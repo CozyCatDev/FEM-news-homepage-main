@@ -44,9 +44,10 @@ Very dark blue: hsl(240, 100%, 5%)
   font: inherit;
 }
 :root{
+
   --fs-h1: 2rem;
   --fs-h2: 1.65rem;
-  --fs-h3: 1.35rem;
+  --fs-h3: 1rem;
   --fs-p: 0.9375rem;
   /* p */
   --fw-regular: 400;
@@ -67,6 +68,7 @@ Very dark blue: hsl(240, 100%, 5%)
   --clr-neutral-100: hsl(240, 100%, 5%);
 
   --fc-p: var(--clr-neutral-200);
+  --fc-btn: var(--clr-neutral-400);
   --fc-heading-accent: var(--clr-primary-1);
   --fc-heading-100: var(--clr-neutral-100);
   --fc-heading-200: var(--clr-neutral-300);
@@ -78,4 +80,57 @@ Very dark blue: hsl(240, 100%, 5%)
 
   --bg-nav: var(--clr-neutral-400);
   --bg-btn: var(--bg-accent);
+
+  --p-xs: 0.25rem;
+  --p-sm: 0.5rem;
+  --p-md: 0.75rem;
+  --p-lg: 1.5rem;
+  --p-btn: var(--p-md) var(--p-lg);
+
+  --ls: 3px;
+}
+
+body{
+  font-family: Inter, sans-serif;
+  font-size: var(--fs-p);
+  font-weight: var(--fw-regular);
+}
+
+h1{
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+}
+
+h2{
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
+}
+
+h3{
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+}
+
+p{
+  font-size: var(--fs-p);
+  font-weight: var(--fw-regular);
+}
+
+button{
+  border: 0;
+  padding: var(--p-btn);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-regular);
+  background-color: var(--bg-btn);
+  color: var(--fc-btn);
+  letter-spacing: var(--ls);
+}
+
+ul{
+  list-style-type: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
 }
