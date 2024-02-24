@@ -43,11 +43,15 @@ Very dark blue: hsl(240, 100%, 5%)
   padding: 0;
   font: inherit;
 }
+img{
+  display: block;
+  max-width: 100%;
+}
 :root{
 
-  --fs-h1: 2rem;
+  --fs-h1: 3.5rem;
   --fs-h2: 1.65rem;
-  --fs-h3: 1rem;
+  --fs-h3: 1.25rem;
   --fs-p: 0.9375rem;
   /* p */
   --fw-regular: 400;
@@ -59,6 +63,7 @@ Very dark blue: hsl(240, 100%, 5%)
   --g-sm: 0.5rem;
   --g-md: 1rem;
   --g-lg: 1.5rem;
+  --g-xl: 2rem;
 
   --clr-primary-1: hsl(35, 77%, 62%);
   --clr-primary-2: hsl(5, 85%, 63%);
@@ -86,14 +91,26 @@ Very dark blue: hsl(240, 100%, 5%)
   --p-md: 0.75rem;
   --p-lg: 1.5rem;
   --p-btn: var(--p-md) var(--p-lg);
+  --p-block-content-desktop: 5rem;
+  --p-block-content-mobile: 2rem;
 
   --ls: 3px;
+
+  --bp-mobile: 23.4375rem;
+  --bp-desktop: 90rem;
+
+  --min-content-padding: 1rem;
+  --max-content-padding: 1fr;
+  --min-content-width: 18rem;
+  --max-content-width: calc(var(--bp-desktop) - 20rem);
 }
 
 body{
   font-family: Inter, sans-serif;
   font-size: var(--fs-p);
   font-weight: var(--fw-regular);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1{
@@ -134,3 +151,88 @@ a{
   text-decoration: none;
   color: inherit;
 }
+
+header, main{
+  display: grid;
+  grid-template-columns: minmax(var(--min-content-padding), var(--max-content-padding)) [content-start] minmax(var(--min-content-width), var(--max-content-width)) [content-end] minmax(var(--min-content-padding), var(--max-content-padding));
+}
+
+header{
+  padding: var(--p-block-content-mobile) 0;
+  background-color: var(--bg-nav);
+}
+
+.wrapper{
+  grid-area: content;
+}
+
+header > .wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav{
+  --nav-offset: -75vw;
+}
+nav[data-active="false"]::before{
+  animation: fade-out 5s ease-in-out forwards;
+}
+nav[data-active="true"]::before{
+  animation: fade-in 5s ease-in-out forwards;
+}
+nav[data-active="false"]{
+  --nav-offset: -75vw;
+}
+nav[data-active="true"]{
+  --nav-offset: 0;
+}
+
+nav ul{
+  position: absolute;
+  padding-left: 2rem;
+  width: 75vw;
+  top: 0;
+  bottom: 0;
+  right: var(--nav-offset);
+  z-index: 1;
+  background-color: var(--bg-nav);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--g-xl);
+  transition: right 250ms ease-in-out;
+}
+
+nav li{
+  font-size: var(--fs-h3);
+}
+
+nav button{
+  background-color: transparent;
+  padding: 0;
+}
+
+.close-nav-btn{
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+@media (min-width: 768px){
+  .hide-desktop{
+    display: none;
+  }
+  header{
+    padding: var(--p-block-content-desktop) 0 var(--p-block-content-mobile) 0;
+  }
+  nav ul{
+    position: static;
+    flex-direction: row;
+    transition: none;
+    justify-content: flex-end;
+    width: max-content;
+  }
+}
+
