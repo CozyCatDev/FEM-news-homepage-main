@@ -185,40 +185,46 @@ header > .wrapper{
 }
 
 nav{
-  --nav-offset: -75vw;
+  --nav-offset: 100%;
+  --nav-width: 70vw;
+  --nav-transition: right 250ms ease-in-out;
 }
-nav[data-active="false"]::before{
-  animation: fade-out 5s ease-in-out forwards;
-}
-nav[data-active="true"]::before{
-  animation: fade-in 5s ease-in-out forwards;
+nav::before{
+  content: '';
+  display: none;
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
 }
 nav[data-active="false"]{
-  --nav-offset: -75vw;
+  /* hide */
+  --nav-offset: calc(-1 * var(--nav-width));
 }
 nav[data-active="true"]{
-  --nav-offset: 0;
+  /* show */
+  --nav-offset: 0rem;
 }
 
 nav ul{
   position: absolute;
   padding-left: 2rem;
-  width: 75vw;
-  top: 0;
+  width: var(--nav-width);
+  top: -20%;
   bottom: 0;
   right: var(--nav-offset);
-  z-index: 1;
   background-color: var(--bg-nav);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: var(--g-xl);
-  transition: right 250ms ease-in-out;
+  gap: calc(var(--g-lg) + 0.5rem);
+  transition: var(--nav-transition);
 }
 
 nav li{
   font-size: var(--fs-h3);
+  color: var(--fc-heading-100);
 }
 
 nav li:hover{
@@ -234,9 +240,14 @@ nav button{
   cursor: pointer;
 }
 .close-nav-btn{
+  --margin-top: 1.5rem;
+  --margin-right: 1.5rem;
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  width: max-content;
+  z-index: 1;
+  top: var(--margin-top);
+  right: calc(var(--nav-offset) + var(--margin-right));
+  transition: right 250ms ease-in-out;
 }
 
 main .wrapper,
@@ -251,7 +262,7 @@ main .wrapper,
   gap: var(--g-lg);
 }
 
-main .wrapper{
+main > .wrapper{
   gap: var(--g-xl);
 }
 
@@ -304,10 +315,10 @@ main .wrapper{
   color: var(--fc-hover-2);
 }
 .category img{
-  max-width: 130px;
+  max-width: 100px;
 }
 .category .desc{
-  gap: var(--g-sm);
+  gap: 0;
 }
 .category h2{
   color: var(--fc-heading-100);
@@ -319,12 +330,15 @@ main .wrapper{
   font-size: var(--fs-h2);
 }
 
-@media (min-width: 768px){
+@media (min-width: 969px){
   .hide-desktop{
     display: none;
   }
   header{
     padding: var(--p-block-content-desktop) 0 var(--p-block-content-mobile) 0;
+  }
+  nav::before{
+    display: none !important;
   }
   nav ul{
     position: static;
@@ -339,6 +353,7 @@ main .wrapper{
       "categories categories categories";
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
+    row-gap: 5rem;
   }
   .main-content{
     grid-area: main;
