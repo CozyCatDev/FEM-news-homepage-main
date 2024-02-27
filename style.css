@@ -339,9 +339,6 @@ main > .wrapper{
   header{
     padding: var(--p-block-content-desktop) 0 var(--p-block-content-mobile) 0;
   }
-  nav::before{
-    display: none !important;
-  }
   nav ul{
     position: static;
     flex-direction: row;
