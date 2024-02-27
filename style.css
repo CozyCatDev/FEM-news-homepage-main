@@ -332,6 +332,22 @@ main > .wrapper{
   font-size: var(--fs-h2);
 }
 
+/* footer */
+
+footer{
+  margin-top: var(--g-xl);
+}
+
+footer > .author{
+  text-align: center;
+}
+.author > a{
+  text-decoration: underline;
+}
+.author > a:hover{
+  color: var(--fc-heading-accent);
+}
+
 @media (min-width: 969px){
   .hide-desktop{
     display: none;
