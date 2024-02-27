@@ -188,17 +188,9 @@ nav{
   --nav-width: 70vw;
   --nav-transition: right 250ms ease-in-out;
 }
-nav::before{
-  content: '';
-  display: none;
-  position: absolute;
-  opacity: 0;
-  inset: 0;
-  background-color: rgba(0,0,0,0.5);
-}
 nav[data-active="false"]{
   /* hide */
-  --nav-offset: calc(-1 * var(--nav-width));
+  --nav-offset: -100%;
 }
 nav[data-active="true"]{
   /* show */
